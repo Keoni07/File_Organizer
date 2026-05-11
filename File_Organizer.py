@@ -1,0 +1,39 @@
+import os
+from pathlib import Path
+import shutil
+
+Source_Directory = Path('/Users/adamaustin/Downloads')
+
+def directories(): 
+    list_of_directories = {
+    "Images": [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tiff"],
+    "Videos": [".mp4", ".avi", ".mkv", ".mov"],
+    "Zip": [".zip", ".rar", ".7z"],
+    "Audio": [".mp3", ".wav", ".flac"],
+    "PDF": [".pdf"]
+}
+    return list_of_directories
+
+File_Format_Dictionary = {
+    final_file_format: directory
+    for directory, final_file_stored in directories().items()
+    for final_file_format in final_file_stored
+}
+print(f"Looking in: {Source_Directory}")
+def organizer():
+    for entry in os.scandir(Source_Directory):
+        print(f"Found something: {entry.name}")
+        if entry.is_dir():
+            continue
+        #The way to skip directories^^^
+        file_extension = Path(entry.name).suffix.lower()
+        print(f"Checking: {entry.name} with extension {file_extension}")
+        #The way to get the file extension^^^
+        target_folder = File_Format_Dictionary.get(file_extension)
+        if target_folder:
+            destination = Source_Directory / target_folder
+            os.makedirs(destination, exist_ok=True)
+            shutil.move(entry.path, destination)
+            print(f"Moved {entry.name} → {destination}")
+
+organizer()
