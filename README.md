@@ -1,7 +1,5 @@
 # File_Organizer
 
-# File Organizer
-
 This file organizer automatically sorts downloaded files into categorized folders based on their file extension.
 
 If a folder for a specific file extension is listed in `list_of_directories`, the folder is generated automatically and the file is moved into it. If there is no matching folder for a file's extension, the file is skipped and left in place — keeping the script running without interruption.
