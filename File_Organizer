@@ -10,6 +10,7 @@ def directories():
     "Videos": [".mp4", ".avi", ".mkv", ".mov"],
     "Zip": [".zip", ".rar", ".7z"],
     "Audio": [".mp3", ".wav", ".flac"],
+    "Documents": [".docx", ".xlsx", ".txt", ".csv", ".pptx"],
     "PDF": [".pdf"]
 }
     return list_of_directories
